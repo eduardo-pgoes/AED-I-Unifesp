@@ -7,6 +7,9 @@
 
 #include <stdio.h>
 
+/* Protótipo de função */
+void swap(int *a, int *b);
+
 void swap(int *a, int *b) {
     int swap = *a;
     *a = *b;

@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Protótipos de função */
+int insereAluno(struct aluno* alunos, struct aluno aluno, int size);
+int removeAluno(struct aluno* alunos, int ra, int size);
+int visualizaAluno(struct aluno* alunos, int ra, int size);
+
 struct aluno {
     char nome[50];
     int ra;
