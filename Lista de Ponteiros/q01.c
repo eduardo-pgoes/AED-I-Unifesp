@@ -26,5 +26,5 @@ int main() {
     printf("%d\n", inteiro);
     printf("%f\n", real);
     printf("%c\n", caracter);
-
+    return 0;
 }
