@@ -4,10 +4,22 @@
         Imprima o endereço de cada posição dessa matriz.
 */
 
-void imprimeEnderecos(int linhas, int colunas, float matriz[][]) {
-    for (int i = 0; i < linhas; i++) {
-        for (int j = 0; j < colunas; j++) {
-            printf("Matriz[%d][%d] = %f e esta alocada no endereco %p", i, j, matriz[i][j], (void *)&matriz[i][j]);
+#include <stdio.h>
+
+void imprimeEnderecos(float mat[3][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("Matriz[%d][%d] = %f e esta alocada no endereco %p\n", i, j, mat[i][j], (void *)&mat[i][j]);
         }
     }
+}
+
+int main() {
+    float mat[3][3] = {
+        {5.00, 6.00, 7.00},
+        {1.00, 2.00, 3.00},
+        {4.00, 8.00, 9.00}
+    };
+    imprimeEnderecos(mat);
+    return 0;
 }
