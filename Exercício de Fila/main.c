@@ -1,34 +1,38 @@
-#include "FilaEstatica.h"
+#include "FilaCorreios.h"
+#include <time.h>
+#include <stdlib.h>
 
 void imprimeMenu();
-void leDadosItem(TipoItem*);
+void leDadosItem(TipoItem*, int*, int*);
 
 int main(){
+  srand(time(NULL));
   TipoFila fila;
   TipoItem item;
   int op = 0, i;
-
+  int prioritario;
+  int senhaPrioritaria = 0, senhaComum = 0;
   inicializaFila(&fila);
 
   while(op != 4){
     imprimeMenu();
-    printf("\nOpção: ");
+    printf("\nOpcao: ");
     scanf("%i",&op);
     switch(op){
       case 1:
-        leDadosItem(&item);
+        leDadosItem(&item, &senhaPrioritaria, &senhaComum);
         if(insereNaFila(&fila,item))
           printf("\nItem inserido com sucesso!\n");
         else
-          printf("\nErro! Não foi possível inserir o item!\n");
+          printf("\nErro! Nao foi possível inserir o item!\n");
         break;
       case 2:
         if(retiraDaFila(&fila,&item)){
           printf("\nItem retirado com sucesso!");
-          printf("\nItem: %i %s\n",item.chave,item.nome);
+          imprimeItem(item);
         }
         else{
-          printf("\nErro! Não foi possível retirar da fila!\n");
+          printf("\nErro! Nao foi possível retirar da fila!\n");
         }
         break;
       case 3:
@@ -42,7 +46,7 @@ int main(){
         break;
       case 4:
         destroiFila(&fila);
-        printf("\nAté logo!\n");
+        printf("\nAte logo!\n");
         break;
       default:
         break;
@@ -60,12 +64,17 @@ void imprimeMenu(){
   printf("\n4 - Sair");
 }
 
-void leDadosItem(TipoItem *item){
-  printf("\nDados do Item");
-  printf("\nChave: ");
-  scanf("%i",&item->chave);
-  getchar();
-  printf("Nome: ");
-  fgets(item->nome,sizeof(item->nome),stdin);
-  item->nome[strlen(item->nome)-1] = '\0';
+void leDadosItem(TipoItem *item, int *senhaPrioritaria, int *senhaComum){
+  int prioritario;
+  printf("Sua senha eh prioritaria? 0 - Nao; 1 - Sim ");
+  scanf("%d", &prioritario);
+  if (prioritario) {
+    *senhaPrioritaria += 1;
+    item->senha = *senhaPrioritaria; 
+  } else {
+    *senhaComum += 1;
+    item->senha = *senhaComum; 
+  }
+  item->prioritario = prioritario;
+  imprimeItem(*item);
 }

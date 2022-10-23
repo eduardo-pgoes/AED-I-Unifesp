@@ -4,9 +4,14 @@
 
 #define MAX 1000
 
+/*
+  Flags - 
+  0 - comum;
+  1 - preferencial.
+*/
 typedef struct{
-  int chave;
-  char nome[30];
+  int senha;
+  int prioritario;
 } TipoItem;
 
 typedef struct{
