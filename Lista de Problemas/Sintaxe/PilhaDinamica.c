@@ -22,7 +22,7 @@ int pilhaVazia(TipoPilha *pilha){
 
 int empilha(TipoPilha *pilha, char caracter) {
     TipoNoh *novoNoh;
-    novoNoh = (char*) malloc(sizeof(char));
+    novoNoh = (TipoNoh*) malloc(sizeof(char));
 
     if (novoNoh == NULL) {
         return 0;
@@ -30,6 +30,7 @@ int empilha(TipoPilha *pilha, char caracter) {
 
     novoNoh->caracter = caracter;
     novoNoh->prox = pilha->topo;
+    pilha->topo = novoNoh;
     return 1;
 }
 
@@ -50,7 +51,7 @@ int imprimePilha(TipoPilha *pilha){
   if(!pilhaVazia(pilha)){
     ptrAux = pilha->topo;
     while(ptrAux!=NULL){
-      printf("%c", ptrAux->caracter);
+      printf("%c", (ptrAux->caracter));
       ptrAux = ptrAux->prox;
     }
     return 1;
