@@ -125,9 +125,6 @@ int main() {
         }
     }
 
-    // Verifica o último par.
-    res = verificaSequencia(seq, pares, n_pares, m);
-
     if (res == 1) {
         printf("Correto\n");
     } else if (res == -1) {
@@ -135,6 +132,4 @@ int main() {
     } else {
         printf("Simbolo da esquerda nao fechado\n");
     }
-    TipoPilha esquerda; // Pilha que simboliza os caracteres da esquerda
-    inicializaPilha(&esquerda);
 }
