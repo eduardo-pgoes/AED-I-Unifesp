@@ -63,6 +63,7 @@ int getNumeroDeDiscos(TipoPilha*);
 */
 
 int inicializaTorre(TipoPilha* torres, int n) {
+    // Empilha n discos na primeira torre
     for (int i = 0; i < n; i++) {
         if (!empilha(&torres[0])) {
             return 0;
@@ -79,6 +80,7 @@ void imprimeTorre(TipoPilha* torres) {
 }
 
 int moveDisco(TipoPilha* torres, int origem, int destino) {
+    // Não se pode mover um disco de um lugar para o mesmo lugar
     if (origem == destino) {
         return 0;
     }
@@ -97,6 +99,7 @@ int moveDisco(TipoPilha* torres, int origem, int destino) {
         desempilha(&torres[origem-1]);
     }
 
+    // Verificando o estado das torres após cada movimento
     if (FLAG_DEBUG) {
         printf("\n");
         printf("Estado das torres apos fazer o movimento %d -> %d: ", origem, destino);
@@ -136,6 +139,7 @@ int main() {
     inicializaTorre(torres, n);
 
     int origem, destino, resultadoMovimento;
+    // Lê os movimentos e vai movendo os discos, um a um
     for (int i = 0; i < m; i++) {
         scanf("%d %d", &origem, &destino);
         resultadoMovimento = moveDisco(torres, origem, destino);
@@ -145,6 +149,7 @@ int main() {
         }
     }
 
+    // Verifica o resultado :)
     if (verificaSolucao(torres, n)) {
         printf("Solved");
     } else {
