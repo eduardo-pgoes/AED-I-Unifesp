@@ -20,6 +20,10 @@ typedef struct {
         Par* - lista (array criada com malloc) de pares de símbolos a considerar como válidos na sequência
         int - número de caracteres que devem constar na sequência
         int - número de pares na lista de pares
+    Retornos:
+        1 - sequência correta
+        -1 - Símbolo direito não esperado
+        -2 - Símbolo da esquerda não esperado
 */
 int verificaSequencia(Sequencia*, Par*, int, int);
 

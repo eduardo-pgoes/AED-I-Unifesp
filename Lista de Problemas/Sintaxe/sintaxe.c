@@ -98,11 +98,18 @@ int main() {
     */ 
     int flagVerifica = 0;
     int n_pares = 0;
-    
-    for (int i = 0; i < n; i++) {
+    int res;
+    for (int i = 0; i < n+1; i++) {
+        if (i == n) {
+            res = verificaSequencia(seq, pares, n_pares, m);
+            break;
+        }
         // Reseta a sequência e verifica se tudo tá certo (até agora)...
         if (flagVerifica) {
-            verificaSequencia(seq, pares, n_pares, m);
+            res = verificaSequencia(seq, pares, n_pares, m);
+            if (res != 1) {
+                break;
+            }
             flagVerifica = 0;
             n_pares = 0;
         }
@@ -118,6 +125,16 @@ int main() {
         }
     }
 
+    // Verifica o último par.
+    res = verificaSequencia(seq, pares, n_pares, m);
+
+    if (res == 1) {
+        printf("Correto\n");
+    } else if (res == -1) {
+        printf("Simbolo direito não esperado\n");
+    } else {
+        printf("Simbolo da esquerda nao fechado\n");
+    }
     TipoPilha esquerda; // Pilha que simboliza os caracteres da esquerda
     inicializaPilha(&esquerda);
 }

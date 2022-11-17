@@ -2,15 +2,19 @@
 #include <math.h>
 
 int verificaSequencia(Sequencia *sequencia, Par *pares, int numero_caracteres, int numero_pares) {
-    printf("Mamae, to verificando as sequencias!\n");
-    printf("Numero de caracteres a se considerar: %d\n", numero_caracteres);
     char esq, dir;
+    // Se o n. de caracteres é ímpar, obviamente tem algum par que não foi fechado
+    if ((numero_caracteres) % 2 != 0) {
+        return -2;
+    }
+
     for (int i = 0; i < ceil(numero_caracteres / 2); i++) {
         desempilha(&sequencia->caracteres_esquerda, &esq);
         retiraDaFila(&sequencia->caracteres_direita, &dir);
-        if (getCaracterCorrespondente(pares, esq, numero_pares) == dir) {
-            printf("BINGO!");
-            // TO-DO: Verificar se isso funciona para sequências maiores...
+        // Verifica se o caracter da direita é correspondente ao da esquerda.
+        if (getCaracterCorrespondente(pares, esq, numero_pares) != dir) {
+            // Se não for, o caracter da direita é inesperado/inválido!
+            return -1;
         }
     }
     return 1;
